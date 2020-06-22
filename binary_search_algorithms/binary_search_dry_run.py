@@ -97,7 +97,7 @@ def main(scr):
     return -1
 
   a = [1, 3, 4, 7, 8, 12, 15, 17, 19]
-  key = 4
+  key = 5
   binary_search(a, key)
 
 curses.wrapper(main)
