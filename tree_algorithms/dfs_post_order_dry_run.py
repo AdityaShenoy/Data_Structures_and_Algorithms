@@ -69,7 +69,7 @@ code_lines = [
     '    if node:',
     '        dfs_post_order(node.left)',
     '        dfs_post_order(node.right)',
-    '        print(node.data, end=' ')',
+    '        print(node.data, end=\' \')',
     '',
 ]
 

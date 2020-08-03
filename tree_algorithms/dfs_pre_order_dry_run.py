@@ -68,7 +68,7 @@ def dfs_pre_order(node):
 code_lines = [
     'def dfs_pre_order(node):',
     '    if node:',
-    '        print(node.data, end=' ')',
+    '        print(node.data, end=\' \')',
     '        dfs_pre_order(node.left)',
     '        dfs_pre_order(node.right)',
     '',

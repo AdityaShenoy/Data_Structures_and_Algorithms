@@ -69,7 +69,7 @@ code_lines = [
     'def dfs_in_order(node):',
     '    if node:',
     '        dfs_in_order(node.left)',
-    '        print(node.data, end=' ')',
+    '        print(node.data, end=\' \')',
     '        dfs_in_order(node.right)',
     '',
 ]
