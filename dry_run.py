@@ -1,38 +1,37 @@
-import os
+from IPython.display import clear_output
 
 
 class Debugger:
-    def __init__(self):
-        self.stack = []
-        self.line_num = 0
-        self.calc_text = ''
+    def __init__(self, code_lines, auto_step=0):
+        self.stack = [dict()]
         self.print_string = ''
-        self.code_lines = []
+        self.code_lines = code_lines
+        self.auto_step = auto_step
 
-    def render(self):
-        os.system('cls')
+    def render(self, line_num, vars=dict(), calc_text='', print_string=''):
+        clear_output()
+        self.stack[-1] = {**self.stack[-1], **vars}
 
         print('• CODE')
         for code_line_number, code_line in enumerate(self.code_lines):
-            print('→ ' if code_line_number == self.line_num else '  ',
-                  end='')
-            print(code_line)
-
-        print('\n• CALCULATIONS')
-        print(self.calc_text)
+            print(('→ ' if code_line_number == line_num else '  ') + code_line)
 
         print('\n• VARIABLES')
         if self.stack:
             for key, value in self.stack[-1].items():
                 print(f'{key} = {value}')
 
-        print('\n• PRINT OUTPUT')
-        print(self.print_string)
+        if calc_text:
+            print('\n• CALCULATIONS')
+            print(calc_text)
 
-        print('\n• RECURSION STACK')
-        print(self.stack)
+        self.print_string += print_string
+        if self.print_string:
+            print('\n• PRINT OUTPUT')
+            print(self.print_string)
 
-        input()
+        if len(self.stack) > 1:
+            print('\n• RECURSION STACK')
+            print(self.stack)
 
-
-dry_run = Debugger()
+        input('Press enter to continue')
